@@ -1,4 +1,4 @@
-package com.example.demo;
+package testcases;
 
 import libraries.driverSelection;
 import org.junit.jupiter.api.Test;
@@ -12,8 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class DemoApplicationTests {
 
 @Autowired
-private driverSelection driverSelection;
+private driverSelection driverSelections;
 
+@Autowired
+private WebDriver driver;
 @Value("${browser.name}")
 private String environmnet;
 
@@ -24,11 +26,9 @@ private String environmnet;
 
 	@Test
 	public void browser(){
-		driverSelection test =new driverSelection();
-
+		driver= driverSelections.browser2();
+		driver.get("https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.23.0");
+		driver.findElement(By.id("includelink")).click();
 	}
-//		driver.get("https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.23.0");
-//		driver.findElement(By.id("includelink")).click();
-//	}
 
 }

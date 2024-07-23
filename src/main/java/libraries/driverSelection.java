@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class driverSelection {
+
+    private WebDriver driver;
     @Bean
     public WebDriver browser2(){
-            WebDriver driver = new ChromeDriver();
+            driver = new ChromeDriver();
             return driver;
     }
 }
