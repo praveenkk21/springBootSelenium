@@ -7,28 +7,29 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.annotations.BeforeTest;
+import pages.add_remove_elements;
 
-@SpringBootTest
+@SpringBootTest(classes = {driverSelection.class,add_remove_elements.class})
 class DemoApplicationTests {
 
 @Autowired
-private driverSelection driverSelections;
+private driverSelection driverSelection;
 
 @Autowired
-private WebDriver driver;
-@Value("${browser.name}")
-private String environmnet;
+private add_remove_elements add_remove_elements;
 
     @Test
 	void contextLoads() {
-		System.out.print(environmnet);
+		System.out.print("test");
 	}
 
 	@Test
-	public void browser(){
-		driver= driverSelections.browser2();
-		driver.get("https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.23.0");
-		driver.findElement(By.id("includelink")).click();
+	public void setDriver(){
+        WebDriver driver = driverSelection.driver();
+		driver.get("https://the-internet.herokuapp.com/");
+		driver.findElement(By.xpath("//*[text()='Add/Remove Elements']")).click();
+		add_remove_elements.click_add_element();
+		driver.close();
 	}
-
 }
